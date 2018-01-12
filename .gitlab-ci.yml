@@ -1,0 +1,54 @@
+# .gitlab-ci.yml
+image: node:9
+
+# define pipeline stages
+stages:
+  - test
+  - deploy
+
+# install build tools
+before_script:
+- apt-get update
+- apt-get install -y build-essential
+- yarn -D
+
+# run dummy test command
+test:
+  stage: test
+  script: yarn run test
+
+deploy_production:
+  stage: deploy
+
+  # tag deploy to an environment for tracking
+  environment:
+    name: production
+  script:
+  - yarn run deploy --stage production
+
+  # save build artifacts for publishing
+  artifacts:
+    paths:
+    - .serverless
+
+  # only build when updates are made to "staging" branch
+  only:
+  - master
+
+deploy_staging:
+  stage: deploy
+
+  # tag deploy to an environment for tracking
+  environment:
+    name: staging
+  script:
+  - yarn run deploy
+
+  # save build artifacts for publishing
+  artifacts:
+    paths:
+    - .serverless
+
+  # only build when updates are made to "staging" branch
+  only:
+  - staging
