@@ -31,7 +31,7 @@ deploy_production:
     paths:
     - .serverless
 
-  # only build when updates are made to "staging" branch
+  # only build when updates are made to "master" branch
   only:
   - master
 
