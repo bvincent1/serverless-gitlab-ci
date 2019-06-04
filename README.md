@@ -47,3 +47,5 @@ This should create the repo and automatically create the ci pipeline.
 - Ideally you could just use AWS IAM to create a new admin user and use those keys and not your own. This lets you track usage and keeps your keys separate. Best practice even suggests you rotate keys regularly, but thats a whole different story.
 
 - This project uses `yarn` as the node_modules install tool. This can be easily changed by modifiying the `.gitlab-ci.yml` file and changing the `yarn` command to `npm`.
+
+- Additional Gitlab CI example [RestfullSheets](https://gitlab.com/dotslashsolve/RestfulSheets/)
